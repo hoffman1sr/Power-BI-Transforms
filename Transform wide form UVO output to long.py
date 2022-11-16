@@ -17,4 +17,5 @@ for item in kpis:
 
 # Concat the melted DFs all back together and reset indexes so PowerBI will see them as columns.
 USETHIS_LongDetailedMeasuresDF = pd.concat(melted_dfs, axis=1).sort_index()
+USETHIS_LongDetailedMeasuresDF = USETHIS_LongDetailedMeasuresDF.loc[:,~USETHIS_LongDetailedMeasuresDF.columns.duplicated()].copy() #Drop duplicate year coumns
 USETHIS_LongDetailedMeasuresDF = USETHIS_LongDetailedMeasuresDF.reset_index()
